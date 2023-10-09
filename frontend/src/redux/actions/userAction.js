@@ -5,6 +5,7 @@ import { baseUrl } from "../../config"
 export const logout = () => async (dispatch) => {
     localStorage.removeItem('userInfo')
     dispatch({ type: USER_LOGOUT })
+    window.location.href = 'login'
 }
 
 export const login = (email, password) => async (dispatch) => {
@@ -18,6 +19,8 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
         const { data } = await axios.post(baseUrl + 'users/login', { email, password }, config)
+        console.log(data,"cehcek login------------------");
+        // https://apiconnect.angelbroking.com
         dispatch({
             type: USER_LOGIN_SUCCESS,
             payload: data
